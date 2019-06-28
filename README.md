@@ -20,6 +20,23 @@ Or install it yourself as:
 
     $ gem install rails_console_toolkit
 
+
+## Helper packs
+
+### Aliases
+
+```ruby
+# config/initializers/console.rb
+
+require 'rails_console_toolkit/aliases'
+```
+
+```
+> x # alias exit
+> r # alias reload!
+```
+
+
 ## Usage
 
 ```ruby
