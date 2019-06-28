@@ -54,6 +54,24 @@ foo (3000.6ms)
 ```
 
 
+### [Solidus](https://solidus.io)
+
+```ruby
+# config/initializers/console.rb
+
+require 'rails_console_toolkit/aliases'
+```
+
+```
+> load_factories # will load solidus factories, useful to create dummy data in development
+> product(...) # => will look for Spree::Product records by :id, :slug, :name
+> variant(...) # => will look for Spree::Variant records by :id, :sku
+> taxon(...)   # => will look for Spree::Taxon   records by :id, :permalink
+> order(...)   # => will look for Spree::Order   records by :id, :number
+> user(...)    # => will look for Spree::User    records by :id, :email
+> country(...) # => will look for Spree::Country records by :id, :iso, :iso3, :iso_name, :name
+```
+
 ## Usage
 
 ```ruby
