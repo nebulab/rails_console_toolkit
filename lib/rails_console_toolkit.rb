@@ -21,6 +21,10 @@ module RailsConsoleToolkit
     helper(new_name) { send(old_name) }
   end
 
+  def remove_helper(name)
+    helper_methods.delete(name.to_sym)
+  end
+
   private
 
   def helper_methods

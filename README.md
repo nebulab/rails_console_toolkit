@@ -61,6 +61,23 @@ RailsConsoleToolkit.alias :r, :reload!
 > r # The same as typing "reload!"
 ```
 
+### Removing unwanted helpers
+
+```ruby
+# config/initializers/console.rb
+
+require 'rails_console_toolkit/aliases' # Will define an alias :x for "exit"
+
+RailsConsoleToolkit.remove_helper :x
+RailsConsoleToolkit.install!
+```
+
+```
+# bin/rails console
+
+> x # NameError (undefined local variable or method \`x' for main:Object)
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
