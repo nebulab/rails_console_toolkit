@@ -17,6 +17,10 @@ module RailsConsoleToolkit
     helper_methods[name.to_sym] = block
   end
 
+  def alias_helper(new_name, old_name)
+    helper(new_name) { send(old_name) }
+  end
+
   private
 
   def helper_methods
