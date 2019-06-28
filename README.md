@@ -37,6 +37,23 @@ require 'rails_console_toolkit/aliases'
 ```
 
 
+### Utils
+
+```ruby
+# config/initializers/console.rb
+
+require 'rails_console_toolkit/aliases'
+```
+
+```
+> benchmark("foo") { sleep 3 }
+foo (3000.6ms)
+=> 3
+
+> bm # alias benchmark
+```
+
+
 ## Usage
 
 ```ruby
