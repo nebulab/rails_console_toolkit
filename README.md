@@ -37,3 +37,15 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/elia/r
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+## About
+
+[![Nebulab][nebulab-logo]][nebulab]
+
+This project is funded and maintained by the [Nebulab][nebulab] team.
+
+We firmly believe in the power of open-source. [Contact us][contact-us] if you
+like our work and you need help with your project design or development.
+
+[nebulab]: http://nebulab.it/
+[nebulab-logo]: http://nebulab.it/assets/images/public/logo.svg
