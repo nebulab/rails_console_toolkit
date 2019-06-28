@@ -61,6 +61,24 @@ RailsConsoleToolkit.alias :r, :reload!
 > r # The same as typing "reload!"
 ```
 
+### Model helpers
+
+```ruby
+# config/initializers/console.rb
+
+RailsConsoleToolkit.model_helper 'Spree::Product', as: :product, by: %i[:name, :slug]
+```
+
+
+```
+# bin/rails console
+
+> product('black-tshirt') # => #<Spree::Product id: 123, name: "Black T-Shirt", slug: "black-tshirt", …>
+> product.slug            # => "black-tshirt"
+> product 456             # => #<Spree::Product id: 456, name: "Red T-Shirt", slug: "red-tshirt", …>
+> product.slug            # => "red-tshirt"
+```
+
 ### Removing unwanted helpers
 
 ```ruby

@@ -1,4 +1,5 @@
 require "rails_console_toolkit/version"
+require "active_support/core_ext/string/inflections"
 
 module RailsConsoleToolkit
   extend self
@@ -15,6 +16,29 @@ module RailsConsoleToolkit
 
   def helper(name, &block)
     helper_methods[name.to_sym] = block
+  end
+
+  def model_helper(klass, as: nil, by: nil, cached: true)
+    klass = klass.constantize if klass.respond_to? :constantize
+    method_name = as || klass.name.gsub('::', '_').underscore
+    cache_key = method_name
+    attribute_names = by || []
+
+    record = nil # use the closure as a cache
+
+    helper method_name do |key = nil|
+      unless cached
+        record = nil
+        raise("missing key for #{key}") unless key
+      end
+
+      if key
+        record ||= klass.find(key) if key.is_a? Numeric
+        attribute_names.find { |name| record ||= klass.find_by(name => key) }
+      end
+
+      record
+    end
   end
 
   def alias_helper(new_name, old_name)
