@@ -1,4 +1,4 @@
-# RailsConsoleToolkit
+# RailsConsoleToolkit 🔧🧰
 
 *Configurable Rails Console Helpers*
 
