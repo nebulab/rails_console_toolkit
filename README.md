@@ -171,5 +171,6 @@ This project is funded and maintained by the [Nebulab][nebulab] team.
 We firmly believe in the power of open-source. [Contact us][contact-us] if you
 like our work and you need help with your project design or development.
 
-[nebulab]: http://nebulab.it/
-[nebulab-logo]: http://nebulab.it/assets/images/public/logo.svg
+[nebulab]: https://nebulab.it/
+[nebulab-logo]: https://nebulab.it/assets/images/public/logo.svg
+[contact-us]: https://nebulab.it/contact-us/
