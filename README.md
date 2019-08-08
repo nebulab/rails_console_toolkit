@@ -42,7 +42,7 @@ require 'rails_console_toolkit/aliases'
 ```ruby
 # config/initializers/console.rb
 
-require 'rails_console_toolkit/aliases'
+require 'rails_console_toolkit/utils'
 ```
 
 ```
@@ -59,7 +59,7 @@ foo (3000.6ms)
 ```ruby
 # config/initializers/console.rb
 
-require 'rails_console_toolkit/aliases'
+require 'rails_console_toolkit/solidus'
 ```
 
 ```
