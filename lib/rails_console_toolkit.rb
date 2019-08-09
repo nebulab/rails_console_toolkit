@@ -6,11 +6,11 @@ module RailsConsoleToolkit
 
   class Error < StandardError; end
 
-  def install!
+  def install!(target_module = Rails::ConsoleMethods)
     require 'rails/console/app'
 
     helper_methods.each do |name, block|
-      Rails::ConsoleMethods.define_method(name, &block)
+      target_module.define_method(name, &block)
     end
   end
 
@@ -27,13 +27,11 @@ module RailsConsoleToolkit
     record = nil # use the closure as a cache
 
     helper method_name do |key = nil|
-      unless cached
-        record = nil
-        raise("missing key for #{key}") unless key
-      end
+      record = nil unless cached
 
       if key
-        record ||= klass.find(key) if key.is_a? Numeric
+        record = nil
+        record ||= klass.find(key) if Numeric === key
         attribute_names.find { |name| record ||= klass.find_by(name => key) }
       end
 
