@@ -11,18 +11,19 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-{{ checksum "Gemfile" }}
             - v1-dependencies-
 
       - run:
           name: install dependencies
           command: |
-            bundle install --jobs=4 --retry=3 --path tmp/bundle
+            bundle update --jobs=4 --retry=3 --path tmp/bundle || \
+              bundle install --jobs=4 --retry=3 --path tmp/bundle
 
       - save_cache:
           paths:
             - ./tmp/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+          key: v1-dependencies-{{ checksum "Gemfile" }}
 
       - run:
           name: run tests
