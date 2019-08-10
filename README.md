@@ -4,6 +4,8 @@
 
 Find records faster, add custom helpers, improve your console life by 100%.
 
+[![CircleCI](https://img.shields.io/circleci/build/github/nebulab/rails_console_toolkit/master?logo=circleci)](https://circleci.com/gh/nebulab/rails_console_toolkit)
+
 ## Installation
 
 Add this line to your application's Gemfile:
