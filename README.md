@@ -14,14 +14,15 @@ Add this line to your application's Gemfile:
 gem 'rails_console_toolkit'
 ```
 
-And then execute:
+And then configure it within an initializer:
 
-    $ bundle
+```ruby
+# config/initializers/console.rb
 
-Or install it yourself as:
-
-    $ gem install rails_console_toolkit
-
+RailsConsoleToolkit.configure do |config|
+  # helper definitions go here...
+end
+```
 
 ## Helper packs
 
@@ -30,7 +31,9 @@ Or install it yourself as:
 ```ruby
 # config/initializers/console.rb
 
-require 'rails_console_toolkit/aliases'
+RailsConsoleToolkit.configure do |config|
+  require 'rails_console_toolkit/aliases'
+end
 ```
 
 ```
@@ -44,7 +47,9 @@ require 'rails_console_toolkit/aliases'
 ```ruby
 # config/initializers/console.rb
 
-require 'rails_console_toolkit/utils'
+RailsConsoleToolkit.configure do |config|
+  require 'rails_console_toolkit/utils'
+end
 ```
 
 ```
@@ -61,7 +66,9 @@ foo (3000.6ms)
 ```ruby
 # config/initializers/console.rb
 
-require 'rails_console_toolkit/solidus'
+RailsConsoleToolkit.configure do |config|
+  require 'rails_console_toolkit/solidus'
+end
 ```
 
 ```
@@ -74,24 +81,17 @@ require 'rails_console_toolkit/solidus'
 > country(...) # => will look for Spree::Country records by :id, :iso, :iso3, :iso_name, :name
 ```
 
-## Usage
-
-```ruby
-# config/initializers/console.rb
-
-# helper definitions go here...
-
-RailsConsoleToolkit.install!
-```
-
+## Custom Helpers
 
 ### Generic helpers
 
 ```ruby
 # config/initializers/console.rb
 
-RailsConsoleToolkit.helper :foo do
-  :bar
+RailsConsoleToolkit.configure do |config|
+  config.helper :foo do
+    :bar
+  end
 end
 ```
 
@@ -106,7 +106,9 @@ end
 ```ruby
 # config/initializers/console.rb
 
-RailsConsoleToolkit.alias :r, :reload!
+RailsConsoleToolkit.configure do |config|
+  config.alias :r, :reload!
+end
 ```
 
 ```
@@ -120,7 +122,9 @@ RailsConsoleToolkit.alias :r, :reload!
 ```ruby
 # config/initializers/console.rb
 
-RailsConsoleToolkit.model_helper 'Spree::Product', as: :product, by: %i[:name, :slug]
+RailsConsoleToolkit.configure do |config|
+  config.model_helper 'Spree::Product', as: :product, by: %i[:name, :slug]
+end
 ```
 
 
@@ -138,10 +142,12 @@ RailsConsoleToolkit.model_helper 'Spree::Product', as: :product, by: %i[:name, :
 ```ruby
 # config/initializers/console.rb
 
-require 'rails_console_toolkit/aliases' # Will define an alias :x for "exit"
+RailsConsoleToolkit.configure do |config|
+  # Will define an alias :x for "exit"
+  require 'rails_console_toolkit/aliases'
 
-RailsConsoleToolkit.remove_helper :x
-RailsConsoleToolkit.install!
+  config.remove_helper :x
+end
 ```
 
 ```
