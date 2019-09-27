@@ -70,6 +70,17 @@ class RailsConsoleToolkitTest < Minitest::Test
     end
   end
 
+  def test_aliases_pack
+    RailsConsoleToolkit.use_pack :aliases
+    RailsConsoleToolkit.install!(console_methods)
+
+    console_methods.define_method(:reload!) { 'reloaded' }
+    console_methods.define_method(:exit) { 'exited' }
+
+    assert_equal console_methods.r, 'reloaded'
+    assert_equal console_methods.x, 'exited'
+  end
+
   private
 
   # A dummy module to test out methods
