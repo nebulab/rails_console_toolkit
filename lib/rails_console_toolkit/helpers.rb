@@ -1,6 +1,14 @@
 require "active_support/core_ext/string/inflections"
 
 module RailsConsoleToolkit::Helpers
+  def use_pack pack_name
+    unless %w[aliases solidus utils].include? pack_name.to_s
+      raise Error, "unknown pack name: #{pack_name}"
+    end
+
+    require "rails_console_toolkit/#{pack_name}"
+  end
+
   def install!(target_module = Rails::ConsoleMethods)
     helper_methods.each do |name, block|
       target_module.define_method(name, &block)

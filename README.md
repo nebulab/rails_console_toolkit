@@ -32,7 +32,7 @@ end
 # config/initializers/console.rb
 
 RailsConsoleToolkit.configure do |config|
-  require 'rails_console_toolkit/aliases'
+  config.use_pack :aliases
 end
 ```
 
@@ -48,7 +48,7 @@ end
 # config/initializers/console.rb
 
 RailsConsoleToolkit.configure do |config|
-  require 'rails_console_toolkit/utils'
+  config.use_pack :utils
 end
 ```
 
@@ -67,7 +67,7 @@ foo (3000.6ms)
 # config/initializers/console.rb
 
 RailsConsoleToolkit.configure do |config|
-  require 'rails_console_toolkit/solidus'
+  config.use_pack :solidus
 end
 ```
 
@@ -144,8 +144,7 @@ end
 
 RailsConsoleToolkit.configure do |config|
   # Will define an alias :x for "exit"
-  require 'rails_console_toolkit/aliases'
-
+  config.use_pack :aliases
   config.remove_helper :x
 end
 ```
