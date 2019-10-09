@@ -14,10 +14,18 @@ class RailsConsoleToolkitTest < Minitest::Test
 
   def test_alias
     RailsConsoleToolkit.helper(:foo) { :bar }
+    RailsConsoleToolkit.helper(:quz) { |*args, &block| [args, block] }
     RailsConsoleToolkit.alias_helper(:baz, :foo)
+    RailsConsoleToolkit.alias_helper(:boz, :quz)
     RailsConsoleToolkit.install!(console_methods)
 
     assert_equal console_methods.baz, :bar
+
+    proc = method(:puts).to_proc
+    assert_equal console_methods.boz(1,2,3, &proc), [
+      [1,2,3],
+      proc,
+    ]
   end
 
   class DummyModel < Struct.new(:id, :name)

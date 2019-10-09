@@ -41,7 +41,7 @@ module RailsConsoleToolkit::Helpers
   end
 
   def alias_helper(new_name, old_name)
-    helper(new_name) { send(old_name) }
+    helper(new_name) { |*args, &block| send(old_name, *args, &block) }
   end
 
   def remove_helper(name)
