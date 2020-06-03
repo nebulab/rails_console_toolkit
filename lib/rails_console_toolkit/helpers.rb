@@ -22,7 +22,6 @@ module RailsConsoleToolkit::Helpers
   def model_helper(klass, as: nil, by: nil, cached: true)
     klass = klass.constantize if klass.respond_to? :constantize
     method_name = as || klass.name.gsub('::', '_').underscore
-    cache_key = method_name
     attribute_names = by || []
 
     record = nil # use the closure as a cache
