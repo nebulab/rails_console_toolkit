@@ -32,6 +32,7 @@ module RailsConsoleToolkit::Helpers
 
       if key
         record = nil
+        record = key if klass === key
         record ||= klass.find(key) if Numeric === key
         attribute_names.find { |name| record ||= klass.find_by(name => key) }
       end

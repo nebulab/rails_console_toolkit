@@ -57,23 +57,34 @@ class RailsConsoleToolkitTest < Minitest::Test
     RailsConsoleToolkit.install!(console_methods)
 
     assert_nil(console_methods.rails_console_toolkit_test_dummy_model)
-    DummyModel::DB.each.with_index(1) { |record, id| assert_model_helper(:rails_console_toolkit_test_dummy_model, id, record, record) }
+    DummyModel::DB.each.with_index(1) do |record, id|
+      assert_model_helper(:rails_console_toolkit_test_dummy_model, id, record, record)
+      assert_model_helper(:rails_console_toolkit_test_dummy_model, record, record, record)
+    end
 
     assert_nil(console_methods.foo)
-    DummyModel::DB.each.with_index(1) { |record, id| assert_model_helper(:foo, id, record, record) }
+    DummyModel::DB.each.with_index(1) do |record, id|
+      assert_model_helper(:foo, id, record, record)
+      assert_model_helper(:foo, record, record, record)
+    end
 
     assert_nil(console_methods.foo_no_cache)
-    DummyModel::DB.each.with_index(1) { |record, id| assert_model_helper(:foo_no_cache, id, record, nil) }
+    DummyModel::DB.each.with_index(1) do |record, id|
+      assert_model_helper(:foo_no_cache, id, record, nil)
+      assert_model_helper(:foo_no_cache, record, record, nil)
+    end
 
     assert_nil(console_methods.foo_name)
     DummyModel::DB.each.with_index(1) do |record, id|
       assert_model_helper(:foo_name, id, record, record)
+      assert_model_helper(:foo_name, record, record, record)
       assert_model_helper(:foo_name, record.name, record, record)
     end
 
     assert_nil(console_methods.foo_name_no_cache)
     DummyModel::DB.each.with_index(1) do |record, id|
       assert_model_helper(:foo_name_no_cache, id, record, nil)
+      assert_model_helper(:foo_name_no_cache, record, record, nil)
       assert_model_helper(:foo_name_no_cache, record.name, record, nil)
     end
   end
