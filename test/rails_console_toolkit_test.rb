@@ -1,5 +1,18 @@
 require "test_helper"
 
+# Define dummy solidus constants
+Spree = Module.new
+DummyRecord = Class.new
+Spree::Product = Class.new(DummyRecord)
+Spree::Variant = Class.new(DummyRecord)
+Spree::Taxon = Class.new(DummyRecord)
+Spree::Order = Class.new(DummyRecord)
+Spree::User = Class.new(DummyRecord)
+Spree::Country = Class.new(DummyRecord)
+Spree::Role = Class.new(DummyRecord)
+Spree::Promotion = Class.new(DummyRecord)
+
+
 class RailsConsoleToolkitTest < Minitest::Test
   def test_that_it_has_a_version_number
     refute_nil ::RailsConsoleToolkit::VERSION
@@ -98,6 +111,21 @@ class RailsConsoleToolkitTest < Minitest::Test
 
     assert_equal console_methods.r, 'reloaded'
     assert_equal console_methods.x, 'exited'
+  end
+
+  def test_solidus_pack
+    RailsConsoleToolkit.use_pack :solidus
+    RailsConsoleToolkit.install!(console_methods)
+
+    assert console_methods.respond_to? :product
+    assert console_methods.respond_to? :variant
+    assert console_methods.respond_to? :taxon
+    assert console_methods.respond_to? :order
+    assert console_methods.respond_to? :user
+    assert console_methods.respond_to? :country
+    assert console_methods.respond_to? :role
+    assert console_methods.respond_to? :promotion
+    assert console_methods.respond_to? :promo
   end
 
   private
