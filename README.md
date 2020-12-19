@@ -123,7 +123,7 @@ end
 # config/initializers/console.rb
 
 RailsConsoleToolkit.configure do |config|
-  config.model_helper 'Spree::Product', as: :product, by: %i[:name, :slug]
+  config.model_helper 'Spree::Product', as: :product, by: %i[name slug]
 end
 ```
 
