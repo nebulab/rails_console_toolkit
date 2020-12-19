@@ -14,7 +14,13 @@ Add this line to your application's Gemfile:
 gem 'rails_console_toolkit'
 ```
 
-And then configure it within an initializer:
+And then generate the initializer:
+
+```
+$ bin/rails generate rails_console_toolkit:install
+```
+
+or write it manually:
 
 ```ruby
 # config/initializers/console.rb
