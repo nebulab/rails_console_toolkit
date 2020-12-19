@@ -21,6 +21,10 @@ And then configure it within an initializer:
 
 RailsConsoleToolkit.configure do |config|
   # helper definitions go here...
+  #
+  # config.use_pack :aliases
+  # config.use_pack :utils
+  # config.use_pack :solidus if defined? Spree
 end
 ```
 
