@@ -4,7 +4,8 @@
 
 Find records faster, add custom helpers, improve your console life by 100%.
 
-[![CircleCI](https://img.shields.io/circleci/build/github/nebulab/rails_console_toolkit/master?logo=circleci)](https://circleci.com/gh/nebulab/rails_console_toolkit)
+[![Build](https://github.com/nebulab/rails_console_toolkit/workflows/build/badge.svg)](https://github.com/nebulab/rails_console_toolkit/actions?query=workflow%3Abuild)
+
 
 ## Installation
 

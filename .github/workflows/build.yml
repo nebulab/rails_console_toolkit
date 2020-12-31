@@ -1,0 +1,47 @@
+name: build
+
+on:
+  push:
+    branches:
+      - master
+      - "*/ci-check"
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  rake:
+    name: ${{ matrix.combo.name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        combo:
+          - name: current-ruby
+            ruby: 3.0
+          - name: previous-ruby
+            ruby: 2.7
+          - name: older-ruby
+            ruby: 2.6
+
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.combo.ruby }}
+          bundler-cache: false
+      - run: bundle lock
+      - uses: actions/cache@v2
+        with:
+          path: ./vendor/bundle
+          key: ${{ runner.os }}-${{ matrix.combo.ruby }}-gems-${{ github.ref }}-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.combo.ruby }}-gems-${{ github.ref }}
+            ${{ runner.os }}-${{ matrix.combo.ruby }}-gems-master
+            ${{ runner.os }}-${{ matrix.combo.ruby }}-gems-
+      - name: bundle install
+        run: |
+          bundle config path $PWD/vendor/bundle
+          bundle install --jobs 4 --retry 3
+          bundle clean
+      - run: bundle exec rake
