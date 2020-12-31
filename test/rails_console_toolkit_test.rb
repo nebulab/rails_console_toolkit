@@ -62,6 +62,10 @@ class RailsConsoleToolkitTest < Minitest::Test
   end
 
   def test_model_helper
+    assert_raises(TypeError) { RailsConsoleToolkit.model_helper RailsConsoleToolkitTest::DummyModel }
+
+    RailsConsoleToolkit.model_helper 'RailsConsoleToolkitTest::DummyModel'
+
     RailsConsoleToolkit.model_helper 'RailsConsoleToolkitTest::DummyModel'
     RailsConsoleToolkit.model_helper 'RailsConsoleToolkitTest::DummyModel', as: :foo
     RailsConsoleToolkit.model_helper 'RailsConsoleToolkitTest::DummyModel', as: :foo_no_cache, cached: false

@@ -19,14 +19,18 @@ module RailsConsoleToolkit::Helpers
     helper_methods[name.to_sym] = block
   end
 
-  def model_helper(klass, as: nil, by: nil, cached: true)
-    klass = klass.constantize if klass.respond_to? :constantize
-    method_name = as || klass.name.gsub('::', '_').underscore
+  def model_helper(klass_name, as: nil, by: nil, cached: true)
+    unless String === klass_name
+      raise TypeError, "The class name is expected to be a String, got #{klass_name.inspect} (#{klass_name.class}) instead."
+    end
+
+    method_name = as || klass_name.gsub('::', '_').underscore
     attribute_names = by || []
 
     record = nil # use the closure as a cache
 
     helper method_name do |key = nil|
+      klass = klass_name.constantize
       record = nil unless cached
 
       if key
